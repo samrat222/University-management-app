@@ -1,5 +1,5 @@
 <h1 align="center">
-    SCHOOL MANAGEMENT SYSTEM
+    UNIBERSITY MANAGEMENT SYSTEM
 </h1>
 
 <h3 align="center">
@@ -45,9 +45,11 @@ The School Management System is a web-based application built using the MERN (Mo
 ```sh
 git clone https://github.com/Yogndrr/MERN-School-Management-System.git
 ```
+
 Open 2 terminals in separate windows/tabs.
 
-Terminal 1: Setting Up Backend 
+Terminal 1: Setting Up Backend
+
 ```sh
 cd backend
 npm install
@@ -55,17 +57,19 @@ npm start
 ```
 
 Terminal 2: Setting Up Frontend
+
 ```sh
 cd frontend
 npm install
 npm start
 ```
-Now, navigate to `localhost:3000` in your browser. 
+
+Now, navigate to `localhost:3000` in your browser.
 The Backend API will be running at `localhost:5000`.
 
 <br>
 
 # Deployment
-* Render - server side
-* Netlify - client side
 
+- Render - server side
+- Netlify - client side
