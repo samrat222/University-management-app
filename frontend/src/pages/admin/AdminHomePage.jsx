@@ -37,34 +37,26 @@ const AdminHomePage = () => {
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={3} lg={3}>
-            <StyledPaper>
+            <StyledPaper backgroundColor="#3498db">
               <img src={Students} alt="Students" />
               <Title>Total Students</Title>
               <Data start={0} end={numberOfStudents} duration={2.5} />
             </StyledPaper>
           </Grid>
           <Grid item xs={12} md={3} lg={3}>
-            <StyledPaper>
+            <StyledPaper backgroundColor="#e74c3c">
               <img src={Classes} alt="Classes" />
               <Title>Total Classes</Title>
               <Data start={0} end={numberOfClasses} duration={5} />
             </StyledPaper>
           </Grid>
-          <Grid item xs={12} md={3} lg={3}>
-            <StyledPaper>
+          <Grid item xs={12} md={3} lg={4}>
+            <StyledPaper backgroundColor="#2ecc71">
               <img src={Teachers} alt="Teachers" />
               <Title>Total Teachers</Title>
               <Data start={0} end={numberOfTeachers} duration={2.5} />
             </StyledPaper>
           </Grid>
-          {/* <Grid item xs={12} md={3} lg={3}>
-                        <StyledPaper>
-                            <img src={Fees} alt="Fees" />
-                            <Title>
-                                Fees Collection
-                            </Title>
-                            <Data start={0} end={23000} duration={2.5} prefix="$" />                        </StyledPaper>
-                    </Grid> */}
           <Grid item xs={12} md={12} lg={12}>
             <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
               <SeeNotice />
@@ -84,15 +76,17 @@ const StyledPaper = styled(Paper)`
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  color: #fff;
 `;
 
 const Title = styled.p`
   font-size: 1.25rem;
+  font-weight: bold;
 `;
 
 const Data = styled(CountUp)`
   font-size: calc(1.3rem + 0.6vw);
-  color: green;
+  color: $fff;
 `;
 
 export default AdminHomePage;
