@@ -13,6 +13,9 @@ import { calculateOverallAttendancePercentage, calculateSubjectAttendancePercent
 import CustomBarChart from '../../../components/CustomBarChart'
 import CustomPieChart from '../../../components/CustomPieChart'
 import { StyledTableCell, StyledTableRow } from '../../../components/styles';
+import { Oval } from 'react-loader-spinner';
+import axios from 'axios';
+import { saveAs } from 'file-saver';
 
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
@@ -110,6 +113,19 @@ const ViewStudent = () => {
         //         navigate(-1)
         //     })
     }
+    const handleDownload = async () => {
+        try {
+            const response = await axios.get('/downloadExcel', {
+                responseType: 'blob',
+            });
+
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            saveAs(blob, 'students_data.xlsx');
+        } catch (error) {
+            console.error('Error downloading Excel:', error);
+        }
+    };
 
     const removeHandler = (id, deladdress) => {
         dispatch(removeStuff(id, deladdress))
@@ -175,10 +191,10 @@ const ViewStudent = () => {
                                             <IconButton onClick={() => removeSubAttendance(subId)}>
                                                 <DeleteIcon color="error" />
                                             </IconButton>
-                                            <Button variant="contained" sx={styles.attendanceButton}
+                                            {/* <Button variant="contained" sx={styles.attendanceButton}
                                                 onClick={() => navigate(`/Admin/subject/student/attendance/${studentID}/${subId}`)}>
                                                 Change
-                                            </Button>
+                                            </Button> */}
                                         </StyledTableCell>
                                     </StyledTableRow>
                                     <StyledTableRow>
@@ -223,9 +239,9 @@ const ViewStudent = () => {
                         Overall Attendance Percentage: {overallAttendancePercentage.toFixed(2)}%
                     </div>
                     <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={() => removeHandler(studentID, "RemoveStudentAtten")}>Delete All</Button>
-                    <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/attendance/" + studentID)}>
+                    {/* <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/attendance/" + studentID)}>
                         Add Attendance
-                    </Button>
+                    </Button> */}
                 </>
             )
         }
@@ -357,41 +373,10 @@ const ViewStudent = () => {
                 <Button variant="contained" sx={styles.styledButton} onClick={deleteHandler}>
                     Delete
                 </Button>
-                <br />
-                {/* <Button variant="contained" sx={styles.styledButton} className="show-tab" onClick={() => { setShowTab(!showTab) }}>
-                    {
-                        showTab
-                            ? <KeyboardArrowUp />
-                            : <KeyboardArrowDown />
-                    }
-                    Edit Student
+                <Button variant="contained" sx={styles.styledButton} onClick={handleDownload}>
+                    Download Report
                 </Button>
-                <Collapse in={showTab} timeout="auto" unmountOnExit>
-                    <div className="register">
-                        <form className="registerForm" onSubmit={submitHandler}>
-                            <span className="registerTitle">Edit Details</span>
-                            <label>Name</label>
-                            <input className="registerInput" type="text" placeholder="Enter user's name..."
-                                value={name}
-                                onChange={(event) => setName(event.target.value)}
-                                autoComplete="name" required />
-
-                            <label>Roll Number</label>
-                            <input className="registerInput" type="number" placeholder="Enter user's Roll Number..."
-                                value={rollNum}
-                                onChange={(event) => setRollNum(event.target.value)}
-                                required />
-
-                            <label>Password</label>
-                            <input className="registerInput" type="password" placeholder="Enter user's password..."
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
-                                autoComplete="new-password" />
-
-                            <button className="registerButton" type="submit" >Update</button>
-                        </form>
-                    </div>
-                </Collapse> */}
+                <br />
             </div>
         )
     }
@@ -401,7 +386,15 @@ const ViewStudent = () => {
             {loading
                 ?
                 <>
-                    <div>Loading...</div>
+                    <Oval
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#1976D2"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
                 </>
                 :
                 <>
