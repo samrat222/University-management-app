@@ -12,7 +12,7 @@ import {
   getFailed,
   getError,
 } from "./userSlice";
-const baseURl = "http://localhost:5000";
+const baseURl = "https://university-management-app.onrender.com";
 
 export const loginUser = (fields, role) => async (dispatch) => {
   dispatch(authRequest());

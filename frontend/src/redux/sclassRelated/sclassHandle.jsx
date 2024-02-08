@@ -11,7 +11,7 @@ import {
   getSubDetailsSuccess,
   getSubDetailsRequest,
 } from "./sclassSlice";
-const baseURL = "http://localhost:5000";
+const baseURL = "https://university-management-app.onrender.com";
 
 export const getAllSclasses = (id, address) => async (dispatch) => {
   dispatch(getRequest());

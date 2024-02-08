@@ -7,7 +7,7 @@ import {
   postDone,
   doneSuccess,
 } from "./teacherSlice";
-const baseURL = "http://localhost:5000";
+const baseURL = "https://university-management-app.onrender.com";
 
 export const getAllTeachers = (id) => async (dispatch) => {
   dispatch(getRequest());

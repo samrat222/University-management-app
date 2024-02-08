@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getRequest, getSuccess, getFailed, getError } from "./complainSlice";
-const baseURL = "http://localhost:5000";
+const baseURL = "https://university-management-app.onrender.com";
 
 export const getAllComplains = (id, address) => async (dispatch) => {
   dispatch(getRequest());
